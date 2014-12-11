@@ -37,6 +37,14 @@ def directoryPlay():
     
     print os.path.isdir("/usr/bin/python")
     print os.path.isfile("/usr/bin/python")
+
+    dirList = os.listdir("/usr")
+    
+    for filename in dirList:
+        if os.path.isdir("/usr/" + filename):
+            print os.listdir("/usr/" + filename)
+        else:
+            continue
         
 
 def main():
