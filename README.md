@@ -1,4 +1,5 @@
 PythonTutorial
 ==============
 
-My code from following Derek Banas's python tutorials on Youtube
+My code from following various python tutorials on YouTube
+
