@@ -18,6 +18,14 @@ purple = (255,0,255)
 setDisplay = pygame.display.set_mode((400,300))
 pygame.display.set_caption('Epic Game')
 
+setDisplay.fill(cyan)
+
+singlePixel = pygame.PixelArray(setDisplay)
+singlePixel[3][3] = black
+
+pygame.draw.line(setDisplay, blue, (389, 200), (300,70),4)
+
+
 # main game loop
 while True:
     for event in pygame.event.get():
