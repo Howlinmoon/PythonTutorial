@@ -21,8 +21,8 @@ pygame.display.set_caption('Epic Game')
 img = pygame.image.load('evilSquare.png')
 imgx = 10
 imgy = 10
-pixMove = 5
-FPS = 30
+pixMove = 1
+FPS = 250
 movement = "down"
 
 fpsTime = pygame.time.Clock()
@@ -34,21 +34,25 @@ while True:
     if movement == "down":
         imgy += pixMove
         if imgy > 200:
+            img = pygame.transform.rotate(img,90)
             movement = 'right'
     
     elif movement == 'right':
         imgx += pixMove
         if imgx > 200:
+            img = pygame.transform.rotate(img,90)
             movement = "up"
     
     elif movement == 'up':
         imgy -= pixMove
         if imgy < 30:
+            img = pygame.transform.rotate(img,90)
             movement = 'left'
     
     elif movement == 'left':
         imgx -= pixMove
         if imgx < 30:
+            img = pygame.transform.rotate(img,90)
             movement = 'down'
     
     
