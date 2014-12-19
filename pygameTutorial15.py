@@ -63,7 +63,10 @@ def msgSurface(text, textColor):
         
     runGame()
     
-    
+def evilMove(evilGuy):
+    newCell = {'x':evilGuy[0]['x']+1, 'y':evilGuy[0]['y']}
+    del evilGuy[-1]
+    evilGuy.insert(0, newCell)
 
 
 
@@ -71,6 +74,8 @@ def runGame():
     startx = 3
     starty = 3
     coords = [{'x':startx, 'y':starty}]
+    evilCoords1 = [{'x':15, 'y':15}]
+    
     direction = RIGHT
     isAlive = 'yes'
     
@@ -110,7 +115,12 @@ def runGame():
     
             coords.insert(0, newCell)
             setDisplay.fill(bg)
+            
+            evilMove(evilCoords1)
+            
+            
             drawCell(coords)
+            drawCell(evilCoords1)
             pygame.display.update()
             fpsTime.tick(fps)
             
