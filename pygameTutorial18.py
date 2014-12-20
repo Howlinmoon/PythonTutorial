@@ -23,6 +23,7 @@ DOWN = 'down'
 RIGHT = 'right'
 LEFT = 'left'
 
+deadZones = []
 
 def whatNext():
     for event in pygame.event.get([KEYDOWN, KEYUP, QUIT]):
@@ -64,6 +65,7 @@ def msgSurface(text, textColor):
     runGame()
     
 def evilMove(evilGuy):
+    evilCoords = []
     # returns -1, 0, 1
     randomMovex = random.randrange(-1, 2)
     randomMovey = random.randrange(-1, 2)
@@ -74,11 +76,16 @@ def evilMove(evilGuy):
         newCell = {'x': dispWidth/(2 * cellSize), 'y': dispHeight/(2 * cellSize)}
 
     del evilGuy[-1]
+    evilCoords.append(newCell['x'])
+    evilCoords.append(newCell['y'])
+    deadZones.append(evilCoords)
+    
     evilGuy.insert(0, newCell)
-
+    
 
 
 def runGame():
+    global deadZones
     startx = 3
     starty = 3
     coords = [{'x':startx, 'y':starty}]
@@ -97,6 +104,7 @@ def runGame():
     
     while True:
         while isAlive == 'yes':
+            deadZones = []
             for event in pygame.event.get():
                 if event.type == QUIT:
                     pygame.quit()
@@ -153,6 +161,13 @@ def runGame():
             drawCell(evilCoords7)
             drawCell(evilCoords8)
             drawCell(evilCoords9)
+            
+            currentPos = [newCell['x'], newCell['y']]
+            
+            for eachDeathCoord in deadZones:
+                if eachDeathCoord == currentPos:
+                    isAlive = 'no'
+            
             pygame.display.update()
             fpsTime.tick(fps)
             

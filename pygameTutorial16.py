@@ -70,6 +70,11 @@ def evilMove(evilGuy):
     
     
     newCell = {'x':evilGuy[0]['x']+randomMovex, 'y':evilGuy[0]['y']+randomMovey}
+    if (newCell['x'] < 0 or newCell['y'] < 0 or newCell['x'] > dispWidth/cellSize or newCell['y'] > dispHeight/cellSize):
+        newCell = {'x': dispWidth/(2 * cellSize), 'y': dispHeight/(2 * cellSize)}
+
+    
+    
     del evilGuy[-1]
     evilGuy.insert(0, newCell)
 
